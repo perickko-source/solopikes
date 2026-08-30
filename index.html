@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOLO PIKES</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            font-size: 3rem;
+            padding: 20px;
+            color: #00ff88;
+            text-shadow: 0 0 10px #00ff88;
+            letter-spacing: 3px;
+        }
+
+        .banner img {
+            width: 100%;
+            max-width: 900px;
+            border-radius: 10px;
+            padding: 0 10px;
+        }
+
+        /* ── JUEGOS ─── */
+        .juegos-container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .juego-card {
+            background: #1a1a2e;
+            border: 2px solid #00ff88;
+            border-radius: 15px;
+            padding: 15px;
+            transition: transform 0.2s;
+        }
+
+        .juego-card:hover {
+            transform: scale(1.03);
+        }
+
+        .juego-card img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .juego-card a {
+            color: #00ff88;
+            text-decoration: none;
+            font-size: 1.4rem;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .juego-card a:hover {
+            text-decoration: underline;
+        }
+
+        .record {
+            color: #ffcc00;
+            font-size: 1rem;
+        }
+
+        /* ─── TOP DE LA FAMA ─── */
+        .top-fama {
+            max-width: 900px;
+            margin: 50px auto 30px;
+            padding: 0 20px;
+        }
+
+        .top-fama h2 {
+            font-size: 2.2rem;
+            color: #ffcc00;
+            text-shadow: 0 0 10px #ffcc00;
+            margin-bottom: 25px;
+            letter-spacing: 2px;
+        }
+
+        .podio {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .podio-item {
+            background: #1a1a2e;
+            border-radius: 15px 15px 0 0;
+            padding: 15px 20px;
+            min-width: 120px;
+            border: 2px solid;
+        }
+
+        .podio-item.oro {
+            border-color: #ffd700;
+            order: 2;
+            padding-bottom: 30px;
+            transform: scale(1.1);
+        }
+
+        .podio-item.plata {
+            border-color: #c0c0c0;
+            order: 1;
+            padding-bottom: 20px;
+        }
+
+        .podio-item.bronce {
+            border-color: #cd7f32;
+            order: 3;
+            padding-bottom: 15px;
+        }
+
+        .podio-posicion {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .oro .podio-posicion { color: #ffd700; }
+        .plata .podio-posicion { color: #c0c0c0; }
+        .bronce .podio-posicion { color: #cd7f32; }
+
+        .podio-nombre {
+            font-size: 1.1rem;
+            margin: 5px 0;
+            color: #fff;
+            word-break: break-word;
+        }
+
+        .podio-records {
+            font-size: 0.9rem;
+            color: #00ff88;
+        }
+
+        /* Lista del resto */
+        .top-lista {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .top-lista-item {
+            background: #1a1a2e;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-lista-pos {
+            color: #888;
+            font-weight: bold;
+            margin-right: 10px;
+            min-width: 30px;
+        }
+
+        .top-lista-nombre {
+            flex: 1;
+            text-align: left;
+            color: #fff;
+        }
+
+        .top-lista-records {
+            color: #00ff88;
+            font-weight: bold;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding: 20px;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        /* ─── RESPONSIVE MÓVIL ─── */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+                padding: 15px 10px;
+            }
+
+            .juegos-container {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                padding: 0 10px;
+            }
+
+            .juego-card a {
+                font-size: 1.2rem;
+            }
+
+            .top-fama h2 {
+                font-size: 1.6rem;
+            }
+
+            .podio {
+                gap: 8px;
+            }
+
+            .podio-item {
+                min-width: 90px;
+                padding: 10px 12px;
+            }
+
+            .podio-item.oro {
+                transform: scale(1);
+            }
+
+            .podio-posicion {
+                font-size: 1.5rem;
+            }
+
+            .podio-nombre {
+                font-size: 0.9rem;
+            }
+
+            .top-lista {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>SOLO PIKES</h1>
+
+    <div class="banner">
+        <img src="banner.png" alt="Todos los Juegos">
+    </div>
+
+    <div class="juegos-container">
+
+        <!-- JUEGO 1 -->
+        <div class="juego-card">
+            <img src="juego1.png" alt="Juego 1">
+            <a href="https://t.me/solopikes/14727" target="_blank">
+                Yo soy Fevercade, Duelo al sol
+            </a>
+            <p class="record">🏆 Récord: Perickko — 25.035 pts</p>
+        </div>
+
+        <!-- JUEGO 2 -->
+        <div class="juego-card">
+            <img src="juego2.png" alt="Juego 2">
+            <a href="https://t.me/tu_grupo/456" target="_blank">
+                Nombre del Juego 2
+            </a>
+            <p class="record">🏆 Récord: nombre — 0 pts</p>
+        </div>
+
+        <!-- Añade más juegos copiando el bloque .juego-card -->
+
+    </div>
+
+    <!-- ═══ TOP DE LA FAMA ═══ -->
+    <div class="top-fama">
+        <h2>🏆 TOP DE LA FAMA 🏆</h2>
+
+        <div class="podio" id="podio"></div>
+        <div class="top-lista" id="topLista"></div>
+    </div>
+
+    <footer>SOLO PIKES © 2026 — ¡A pikarse!</footer>
+
+    <!-- ═══ DATOS DEL TOP (edita esto) ══ -->
+    <script>
+        const topFama = [
+            { nombre: "Perickko",    records: 1 },
+            { nombre: "nombre",   records: 0  },
+            { nombre: "nombre",   records: 0  },
+            { nombre: "nombre",   records: 0  },
+            { nombre: "nombre",  records: 0  },
+            { nombre: "nombre",     records: 0  },
+            { nombre: "nombre",    records: 0  },
+            { nombre: "nombre",   records: 0  },
+            { nombre: "nombre",   records: 0  },
+
+        ];
+
+        // Ordenar de mayor a menor récords
+        topFama.sort((a, b) => b.records - a.records);
+
+        const podioEl = document.getElementById('podio');
+        const listaEl = document.getElementById('topLista');
+
+        const clases = ['oro', 'plata', 'bronce'];
+        const medallas = ['🥇', '🥈', '🥉'];
+
+        // Renderizar podio (top 3)
+        topFama.slice(0, 3).forEach((user, i) => {
+            podioEl.innerHTML += `
+                <div class="podio-item ${clases[i]}">
+                    <div class="podio-posicion">${medallas[i]}</div>
+                    <div class="podio-nombre">${user.nombre}</div>
+                    <div class="podio-records">${user.records} récords</div>
+                </div>
+            `;
+        });
+
+        // Renderizar resto de la lista
+        topFama.slice(3).forEach((user, i) => {
+            listaEl.innerHTML += `
+                <div class="top-lista-item">
+                    <span class="top-lista-pos">${i + 4}º</span>
+                    <span class="top-lista-nombre">${user.nombre}</span>
+                    <span class="top-lista-records">${user.records} 🏆</span>
+                </div>
+            `;
+        });
+    </script>
+
+</body>
+</html>
